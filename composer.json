@@ -1,0 +1,16 @@
+{
+    "name": "mightybytesuk/apirone",
+    "description": "Simple Package To Help Use The APIrone API",
+    "autoload": {
+        "psr-4": {
+            "Mightybytesuk\\Apirone\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Aiden",
+            "email": "84194083+mightybytesuk@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
