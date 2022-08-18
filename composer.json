@@ -2,8 +2,8 @@
     "name": "mightybytesuk/apirone",
     "description": "Simple Package To Help Use The APIrone API",
     "autoload": {
-        "psr-4": {
-            "Mightybytesuk\\Apirone\\": "src/"
+        "psr-0": {
+            "Apirone": "src/"
         }
     },
     "authors": [
