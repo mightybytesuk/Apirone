@@ -21,7 +21,7 @@ class Apirone {
          
         curl_close($curl);
 
-        return $data;
+        echo $data;
     }
 
     public function sendGetRequest($endpoint)
@@ -38,7 +38,7 @@ class Apirone {
          
         curl_close($curl);
 
-        return $data; 
+        echo $data; 
     }
 
     public function account()
