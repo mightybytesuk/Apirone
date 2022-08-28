@@ -4,7 +4,7 @@ namespace Apirone;
 
 class Apirone {
 
-    function sendPostRequest($endpoint, $data)
+    function sendPostRequest($endpoint, $data, $method)
     {
         $url = 'https://apirone.com/api/v2/'.$endpoint;
  
@@ -13,9 +13,13 @@ class Apirone {
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_POST, TRUE);
+
+            if($method == 'post')
+            {
+                curl_setopt($curl, CURLOPT_POST, TRUE);
         
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+                curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+            }
          
         $data = curl_exec($curl);
          
@@ -24,32 +28,15 @@ class Apirone {
         echo $data;
     }
 
-    public function sendGetRequest($endpoint)
-    {
-        $url = 'https://apirone.com/api/v2/'.$endpoint;
- 
-        $curl = curl_init();
-         
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        
-        $data = curl_exec($curl);
-         
-        curl_close($curl);
-
-        echo $data; 
-    }
-
     public function account()
     {
-        $this->sendPostRequest('accounts', '');
+        $this->sendPostRequest('accounts', '', 'post');
     }
 
     public function checkPayment($account, $currency, $address)
     {
         $endpoint = 'accounts/'.$account.'/balance?currency='.$currency.'&addresses='.$address;
-        $this->sendGetRequest($endpoint);
+        $this->sendPostRequest($endpoint, '', 'get');
         
     }
 
@@ -65,6 +52,6 @@ class Apirone {
             "data": {
                 "id": "'.$id.'"'
             );
-        $this->sendPostRequest($endpoint, $data);
+        $this->sendPostRequest($endpoint, $data, 'post');
     }
 }
